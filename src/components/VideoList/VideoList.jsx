@@ -14,8 +14,6 @@ const VideoListStyled = styled.div`
 `;
 
 const VideoList = (props) => {
-  //   console.log('[VideoList] props', props);
-
   const displayItems = (items) => {
     let newItems = [];
     if (items) {

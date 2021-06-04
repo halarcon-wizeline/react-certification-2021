@@ -13,10 +13,8 @@ import Toolbar from '../Navigation/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer';
 
 function App() {
-
   const [showSideDrawer, setShowSideDrawer] = useState(false);
 
-  console.log("showSideDrawer", showSideDrawer);
   const sideDrawerToggleHandler = () => {
     setShowSideDrawer(!showSideDrawer);
   };
@@ -30,10 +28,7 @@ function App() {
       <AuthProvider>
         <Layout>
           <Toolbar drawerToggleClicked={sideDrawerToggleHandler} />
-          <SideDrawer
-            open={showSideDrawer}
-            onClose={sideDrawerCloseHandler}
-          />
+          <SideDrawer open={showSideDrawer} onClose={sideDrawerCloseHandler} />
           <Switch>
             <Route exact path="/">
               <HomePage />

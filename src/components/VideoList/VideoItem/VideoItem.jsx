@@ -54,8 +54,6 @@ const VideoItemStyled = styled.div`
 `;
 
 const VideoItem = (props) => {
-  //   console.log('[VideoItem] props', props);
-
   return (
     <VideoItemStyled>
       <div className="imageMask">

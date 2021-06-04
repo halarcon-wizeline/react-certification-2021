@@ -18,7 +18,6 @@ const SideDrawerStyled = styled.div`
   margin: 0;
   padding: 8px 0px;
   transform: ${(props) => {
-    console.log('here', props.open);
     return !props.open ? 'translate(-100%)' : 'translate(0)';
   }};
   & .NavigationItems {
@@ -44,8 +43,6 @@ const SideDrawerStyled = styled.div`
 `;
 
 const SideDrawer = (props) => {
-  console.log('[SideDrawer] props', props);
-
   if (props.open) {
     SideDrawerStyled.backgroundColor = 'cyan';
   }

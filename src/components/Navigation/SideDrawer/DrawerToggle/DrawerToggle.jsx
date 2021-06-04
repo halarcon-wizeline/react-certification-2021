@@ -12,6 +12,12 @@ const DrawerToggleStyled = styled.div`
   cursor: pointer;
   margin-right: 50px;
   padding: 10px 4px;
+  overflow: visible;
+  font-size: 1.5rem;
+  @media screen and (max-width: 425px) {
+    padding: 8px 0px;
+    margin-right: 30px;
+  }
   & div {
     width: 100%;
     height: 3px;

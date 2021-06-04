@@ -25,22 +25,26 @@ const ToolbarStyled = styled.div`
   color: white;
   box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%),
     0px 1px 10px 0px rgb(0 0 0 / 12%);
+  @media screen and (max-width: 425px) {
+    height: 56px;
+  }
   & .LeftMenu {
     flex-direction: row;
     display: flex;
     height: 50%;
+    @media screen and (max-width: 425px) {
+        height: 60%;
+        width: 100%;
+    }
   }
-
   & .RightMenu {
     flex-direction: row;
     display: flex;
     height: 100%;
     margin-top: 15px;
-  }
-
-  & .Menu {
-    margin-right: 30px;
-    padding: 6px 10px;
+    @media screen and (max-width: 425px) {
+        display: none;
+    }
   }
 `;
 
