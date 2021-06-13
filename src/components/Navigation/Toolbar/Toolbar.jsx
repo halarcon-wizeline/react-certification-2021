@@ -67,7 +67,7 @@ const Toolbar = (props) => {
   const inputKeyDownHandler = () => {};
 
   return (
-    <ToolbarStyled>
+    <ToolbarStyled role="toolbar">
       <div className="LeftMenu">
         <DrawerToggle clicked={props.drawerToggleClicked} />
         <Input

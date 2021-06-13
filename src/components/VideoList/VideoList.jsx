@@ -30,7 +30,7 @@ const VideoList = (props) => {
   };
 
   return (
-    <VideoListStyled>
+    <VideoListStyled role="list">
       {props.collection.items.length > 0 ? (
         displayItems(props.collection.items)
       ) : (

@@ -55,7 +55,7 @@ const VideoItemStyled = styled.div`
 
 const VideoItem = (props) => {
   return (
-    <VideoItemStyled>
+    <VideoItemStyled role="listitem">
       <div className="imageMask">
         <img src={props.image} alt={props.title} />
       </div>

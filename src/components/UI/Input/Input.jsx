@@ -22,8 +22,10 @@ const InputStyled = styled.input`
 const Input = (props) => {
   return (
     <InputStyled
+      role="input"
       className="Input"
       type="text"
+      placeholder="Search"
       value={props.value}
       onChange={props.changed}
       onKeyDown={props.keyDown}
