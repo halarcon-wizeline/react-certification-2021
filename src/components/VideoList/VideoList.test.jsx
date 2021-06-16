@@ -6,7 +6,8 @@ describe('Render VideoList', () => {
   test('it should appear No videos found', () => {
     const collection = { items: [] };
     render(<VideoList collection={collection} />);
-    expect(screen.getByText('No videos found')).toBeInTheDocument();
+    const items = screen.queryAllByRole('listitem');
+    expect(items).toHaveLength(0);
   });
 
   test('It should render the elements', () => {
@@ -80,8 +81,9 @@ describe('Render VideoList', () => {
     };
     render(<VideoList collection={collection} />);
 
-    expect(screen.queryByText('No videos found')).not.toBeInTheDocument();
     const items = screen.queryAllByRole('listitem');
     expect(items).toHaveLength(2);
   });
+
+  // TODO Maybe you can also add tests to see if the descriptions, titles, etc correspond to the items that you're passing as props.
 });

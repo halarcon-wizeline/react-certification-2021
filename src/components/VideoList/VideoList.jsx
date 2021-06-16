@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import VideoItem from './VideoItem';
 
-const VideoListStyled = styled.div`
+const VideoListStyled = styled.ul`
   padding: 20px;
   margin: 0px auto;
   flex: 1 1 0%;
@@ -16,17 +16,15 @@ const VideoListStyled = styled.div`
 const VideoList = (props) => {
 
   return (
-    <VideoListStyled role="list">
-      {
-        props.collection.items.map((item = []) => (
-          <VideoItem
-            key={item.etag}
-            title={item.snippet.title}
-            description={item.snippet.description}
-            image={item.snippet.thumbnails.high.url}
-          />
-        ))
-      }
+    <VideoListStyled>
+      {props.collection.items.map((item = []) => (
+        <VideoItem
+          key={item.etag}
+          title={item.snippet.title}
+          description={item.snippet.description}
+          image={item.snippet.thumbnails.high.url}
+        />
+      ))}
     </VideoListStyled>
   );
 };

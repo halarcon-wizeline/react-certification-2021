@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const VideoItemStyled = styled.div`
+const VideoItemStyled = styled.li`
   flex-direction: column;
   flex-flow: row wrap;
   border-radius: 5px;
@@ -38,7 +38,7 @@ const VideoItemStyled = styled.div`
   }
   & .imageMask {
     width: 100%;
-    height: 100%;
+    height: 140px;
     overflow: hidden;
     position: relative;
     & img {
@@ -55,7 +55,7 @@ const VideoItemStyled = styled.div`
 
 const VideoItem = (props) => {
   return (
-    <VideoItemStyled role="listitem">
+    <VideoItemStyled>
       <div className="imageMask">
         <img src={props.image} alt={props.title} />
       </div>

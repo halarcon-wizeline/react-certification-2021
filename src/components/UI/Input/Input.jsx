@@ -23,7 +23,7 @@ const Input = (props) => {
       role="input"
       className="Input"
       type="text"
-      placeholder="Search"
+      placeholder={props.placeholder}
       value={props.value}
       onChange={props.changed}
       onKeyDown={props.keyDown}

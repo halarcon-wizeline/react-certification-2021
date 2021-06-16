@@ -71,6 +71,7 @@ const Toolbar = (props) => {
       <div className="LeftMenu">
         <DrawerToggle clicked={props.drawerToggleClicked} />
         <Input
+          value="Search"
           value={inputSearch}
           keyDown={inputKeyDownHandler}
           changed={inputChangeHandler}
