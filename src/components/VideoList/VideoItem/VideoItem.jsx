@@ -20,8 +20,8 @@ const VideoItemStyled = styled.div`
   & div,
   & h2,
   & p {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
   }
   & h2 {
     font-size: 20px;
@@ -37,8 +37,8 @@ const VideoItemStyled = styled.div`
     font-weight: normal;
   }
   & .imageMask {
-    width: 345px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
     & img {

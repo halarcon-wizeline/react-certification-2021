@@ -12,6 +12,24 @@ import Layout from '../Layout';
 import Toolbar from '../Navigation/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer';
 
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body,
+  div,
+  h2,
+  p {
+    margin: 0;
+    padding: 0;
+    /* background-color: white; */
+    /* box-sizing: border-box; */
+  }
+`;
+
 function App() {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
 
@@ -25,6 +43,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <AuthProvider>
         <Layout>
           <Toolbar drawerToggleClicked={sideDrawerToggleHandler} />

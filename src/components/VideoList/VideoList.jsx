@@ -14,28 +14,19 @@ const VideoListStyled = styled.div`
 `;
 
 const VideoList = (props) => {
-  const displayItems = (items) => {
-    let newItems = [];
-    if (items) {
-      newItems = items.map((item) => (
-        <VideoItem
-          key={item.etag}
-          title={item.snippet.title}
-          description={item.snippet.description}
-          image={item.snippet.thumbnails.high.url}
-        />
-      ));
-    }
-    return newItems;
-  };
 
   return (
     <VideoListStyled role="list">
-      {props.collection.items.length > 0 ? (
-        displayItems(props.collection.items)
-      ) : (
-        <h2>No videos found</h2>
-      )}
+      {
+        props.collection.items.map((item = []) => (
+          <VideoItem
+            key={item.etag}
+            title={item.snippet.title}
+            description={item.snippet.description}
+            image={item.snippet.thumbnails.high.url}
+          />
+        ))
+      }
     </VideoListStyled>
   );
 };
