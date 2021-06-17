@@ -20,7 +20,6 @@ const InputStyled = styled.input`
 const Input = (props) => {
   return (
     <InputStyled
-      role="input"
       className="Input"
       type="text"
       placeholder={props.placeholder}

@@ -14,6 +14,5 @@ describe('Render DrawerToggle', () => {
     const toggle = screen.getByTestId('drawer-toggle');
     fireEvent.click(toggle);
     expect(handleClick).toHaveBeenCalledTimes(1);
-    debugger;
   });
 });

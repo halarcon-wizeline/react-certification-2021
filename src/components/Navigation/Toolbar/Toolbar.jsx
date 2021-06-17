@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useHistory } from 'react-router';
 
 import styled from 'styled-components';
 
@@ -49,6 +50,7 @@ const ToolbarStyled = styled.div`
 `;
 
 const Toolbar = (props) => {
+  const history = useHistory();
   const [checked, setChecked] = useState(false);
   const [switchLabel, setSwitchLabel] = useState('Dark Mode');
   const [inputSearch, setInputSearch] = useState('wizeline');
@@ -64,14 +66,17 @@ const Toolbar = (props) => {
     setInputSearch(event.target.value);
   };
 
-  const inputKeyDownHandler = () => {};
+  const inputKeyDownHandler = (event) => {
+    if (event.key === 'Enter') {
+      history.push('/');
+    }
+  };
 
   return (
     <ToolbarStyled role="toolbar">
       <div className="LeftMenu">
         <DrawerToggle clicked={props.drawerToggleClicked} />
         <Input
-          value="Search"
           value={inputSearch}
           keyDown={inputKeyDownHandler}
           changed={inputChangeHandler}
