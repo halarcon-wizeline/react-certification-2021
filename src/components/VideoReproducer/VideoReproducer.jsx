@@ -9,7 +9,7 @@ const VideoReproducerStyled = styled.div`
   flex-direction: column;
   overflow: hidden;
 
-  & .channelTitle {
+  & .title {
     padding: 10px 30px;
     box-sizing: border-box;
     display: flex;
@@ -37,11 +37,11 @@ const VideoReproducer = (props) => {
         height="450"
         allowFullScreen
         frameBorder="0"
-        title={props.name}
+        title={props.title}
         src={props.src}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       />
-      <div className="channelTitle">
+      <div className="title">
         <h2>{props.title}</h2>
       </div>
       <p className="description">{props.description}</p>

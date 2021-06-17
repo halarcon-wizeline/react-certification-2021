@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import { createGlobalStyle } from 'styled-components';
 import AuthProvider from '../../providers/Auth';
 import VideoProvider from '../../providers/Video';
 import HomePage from '../../pages/Home';
@@ -13,8 +14,6 @@ import Layout from '../Layout';
 
 import Toolbar from '../Navigation/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer';
-
-import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   * {

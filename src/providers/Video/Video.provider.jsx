@@ -1,9 +1,9 @@
-import React from 'react';
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 import data from '../../data/youtube-videos-mock.json';
 
 const VideoContext = createContext({
+  query: '',
   videos: [],
   selectedVideo: {},
 });
@@ -17,11 +17,21 @@ function useVideos() {
 }
 
 function VideoProvider({ children }) {
+  const [query, setQuery] = useState('');
   const [videos, setVideos] = useState(data);
   const [selectedVideo, setSelectedVideo] = useState({});
 
   return (
-    <VideoContext.Provider value={{ videos, setVideos, selectedVideo, setSelectedVideo }}>
+    <VideoContext.Provider
+      value={{
+        videos,
+        setVideos,
+        selectedVideo,
+        setSelectedVideo,
+        query,
+        setQuery,
+      }}
+    >
       {children}
     </VideoContext.Provider>
   );

@@ -35,10 +35,9 @@ const VideoPage = (props) => {
     <VideoPageStyled>
       <VideoReproducer
         id={selectedVideo.id.videoId}
-        name={selectedVideo.name}
         src={src}
-        title={selectedVideo.title}
-        description={selectedVideo.description}
+        title={selectedVideo.snippet.title}
+        description={selectedVideo.snippet.description}
       />
       <div className="videoList">
         <VideoList displayList="vertical" />

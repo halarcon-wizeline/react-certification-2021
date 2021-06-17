@@ -8,22 +8,23 @@ import VideoItem from './VideoItem';
 import { useVideos } from '../../providers/Video';
 
 const VideoListStyled = styled.ul`
-  padding: ${ ({props}) => props.displayList === 'horizontal' ? '20px' : '0' };
+  padding: ${({ props }) => (props.displayList === 'horizontal' ? '20px' : '0')};
   margin: 0px auto;
   flex: 1 1 0%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   box-sizing: border-box;
-  flex-direction: ${ ({props}) => props.displayList === 'horizontal' ? 'row' : 'column' };
+  flex-direction: ${({ props }) =>
+    props.displayList === 'horizontal' ? 'row' : 'column'};
 
   a {
-    width: ${ ({props}) => props.displayList === 'horizontal' ? '' : '100%' };
+    width: ${({ props }) => (props.displayList === 'horizontal' ? '' : '100%')};
   }
 `;
 
 const VideoList = (props) => {
-
+  // console.log('[VideoList]', props);
   const { videos, setSelectedVideo } = useVideos();
   const history = useHistory();
 
@@ -37,20 +38,20 @@ const VideoList = (props) => {
       {videos.items
         .filter((item = []) => item.id.videoId)
         .map((item = []) => (
-            <Link
-              key={item.id.videoId}
-              to={`/${item.id.videoId}`}
-              onClick={() => linkHandler(item)}
-            >
-              <VideoItem
-                key={item.etag}
-                display={props.displayList}
-                title={item.snippet.title}
-                description={item.snippet.description}
-                image={item.snippet.thumbnails.high.url}
-              />
-            </Link>
-          ))}
+          <Link
+            key={item.id.videoId}
+            to={`/${item.id.videoId}`}
+            onClick={() => linkHandler(item)}
+          >
+            <VideoItem
+              key={item.etag}
+              display={props.displayList}
+              title={item.snippet.title}
+              description={item.snippet.description}
+              image={item.snippet.thumbnails.high.url}
+            />
+          </Link>
+        ))}
     </VideoListStyled>
   );
 };

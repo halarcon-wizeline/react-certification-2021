@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const VideoItemContentHorizontalStyled = styled.div`
   padding: 16px;
   font-weight: normal;
+  overflow: hidden;
   & h2 {
     font-size: 20px;
     text-align: left;
@@ -18,6 +19,7 @@ const VideoItemContentHorizontalStyled = styled.div`
 `;
 
 const VideoItemContentVerticalStyled = styled.div`
+  overflow: hidden;
   & h2 {
     padding-left: 8px;
     font-size: 16px;
