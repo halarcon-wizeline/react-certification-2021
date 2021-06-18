@@ -4,7 +4,7 @@ import Input from './Input';
 
 describe('Render Input', () => {
   test('it should render an input with the wizeline test', () => {
-    render(<Input placeholder="Search" />);
+    render(<Input placeholder="Search" onChange={() => {}} />);
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
   });
 

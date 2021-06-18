@@ -4,7 +4,7 @@ export const searchYoutubeVideo = (query, mockupData = []) => {
     let results = [];
 
     if (mockupData.length > 0) {
-      console.log('[youtube] mockupData', mockupData.items);
+      // console.log('[youtube] mockupData', mockupData.items);
       resolve(mockupData.items);
       return;
     }
@@ -18,7 +18,7 @@ export const searchYoutubeVideo = (query, mockupData = []) => {
       });
       request.execute(function (response) {
         results = response.result;
-        console.log('[youtube] searchYoutubeVideo', results.length, ' videos found');
+        // console.log('[youtube] searchYoutubeVideo', results.length, ' videos found');
         // console.log('[youtube] searchYoutubeVideo', results);
         resolve(results);
       });

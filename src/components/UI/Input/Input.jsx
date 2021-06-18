@@ -20,7 +20,7 @@ const InputStyled = styled.input`
 const Input = (props) => {
   return (
     <InputStyled
-      className="Input"
+      role="textbox"
       type="text"
       placeholder={props.placeholder}
       value={props.value}

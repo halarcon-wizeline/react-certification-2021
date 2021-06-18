@@ -3,10 +3,9 @@ import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
 import { useVideos } from '../../../providers/Video';
 import { searchYoutubeVideo } from '../../../externalAPI/youtube';
-
-import styled from 'styled-components';
 
 import Input from '../../UI/Input/index';
 import Logo from '../../Logo/Logo';
@@ -66,18 +65,23 @@ const Toolbar = (props) => {
     setSwitchLabel(label);
   };
 
+  const getRelatedVideos = () => {
+    if (inputSearch !== query) {
+      setQuery(query);
+      searchYoutubeVideo(query).then((response) => {
+        setVideos(response);
+        history.push('/');
+      });
+    }
+  };
+
   const inputChangeHandler = (event) => {
     setInputSearch(event.target.value);
   };
 
   const inputKeyDownHandler = (event) => {
-    if (event.key === 'Enter' && inputSearch !== query) {
-      setQuery(inputSearch);
-      searchYoutubeVideo(inputSearch).then((response) => {
-        console.log('videos', response);
-        setVideos(response);
-      });
-      history.push('/');
+    if (event.key === 'Enter') {
+      getRelatedVideos(inputSearch);
     }
   };
 

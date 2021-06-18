@@ -5,7 +5,7 @@ import Toolbar from './Toolbar';
 describe('Render Toolbar', () => {
   test('it should have an input', () => {
     render(<Toolbar />);
-    const items = screen.queryAllByRole('input');
+    const items = screen.queryAllByRole('textbox');
     expect(items).toHaveLength(1);
   });
 

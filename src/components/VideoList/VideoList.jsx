@@ -26,6 +26,9 @@ const VideoListStyled = styled.ul`
 const VideoList = (props) => {
   // console.log('[VideoList]', props);
   const { videos, setSelectedVideo } = useVideos();
+
+  let collection = props.collection || videos;
+
   const history = useHistory();
 
   const linkHandler = (item) => {
@@ -35,23 +38,25 @@ const VideoList = (props) => {
 
   return (
     <VideoListStyled props={props}>
-      {videos.items
-        .filter((item = []) => item.id.videoId)
-        .map((item = []) => (
-          <Link
-            key={item.id.videoId}
-            to={`/${item.id.videoId}`}
-            onClick={() => linkHandler(item)}
-          >
-            <VideoItem
-              key={item.etag}
-              display={props.displayList}
-              title={item.snippet.title}
-              description={item.snippet.description}
-              image={item.snippet.thumbnails.high.url}
-            />
-          </Link>
-        ))}
+      {collection.items.length > 0 &&
+        collection.items
+          .filter((item = []) => item.id.videoId)
+          .map((item = []) => (
+            <Link
+              key={item.id.videoId}
+              to={`/${item.id.videoId}`}
+              onClick={() => linkHandler(item)}
+            >
+              <VideoItem
+                role="listitem"
+                key={item.etag}
+                display={props.displayList}
+                title={item.snippet.title}
+                description={item.snippet.description}
+                image={item.snippet.thumbnails.high.url}
+              />
+            </Link>
+          ))}
     </VideoListStyled>
   );
 };
