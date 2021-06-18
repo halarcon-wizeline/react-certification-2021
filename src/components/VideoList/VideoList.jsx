@@ -27,7 +27,7 @@ const VideoList = (props) => {
   // console.log('[VideoList]', props);
   const { videos, setSelectedVideo } = useVideos();
 
-  let collection = props.collection || videos;
+  const collection = props.collection || videos;
 
   const history = useHistory();
 

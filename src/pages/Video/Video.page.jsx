@@ -21,7 +21,7 @@ const VideoPage = (props) => {
   console.log('[VideoPage] props', props);
 
   const history = useHistory();
-  let { selectedVideo } = useVideos();
+  const { selectedVideo } = useVideos();
 
   if (!selectedVideo.id) {
     history.push(`/`);

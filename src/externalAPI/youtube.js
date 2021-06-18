@@ -18,8 +18,8 @@ export const searchYoutubeVideo = (query, mockupData = []) => {
       });
       request.execute(function (response) {
         results = response.result;
-        // console.log('[youtube] searchYoutubeVideo', results.length, ' videos found');
-        // console.log('[youtube] searchYoutubeVideo', results);
+        console.log('[youtube] searchYoutubeVideo', results.length, ' videos found');
+        console.log('[youtube] searchYoutubeVideo', results);
         resolve(results);
       });
     } catch (reason) {

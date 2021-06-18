@@ -67,8 +67,8 @@ const Toolbar = (props) => {
 
   const getRelatedVideos = () => {
     if (inputSearch !== query) {
-      setQuery(query);
-      searchYoutubeVideo(query).then((response) => {
+      setQuery(inputSearch);
+      searchYoutubeVideo(inputSearch).then((response) => {
         setVideos(response);
         history.push('/');
       });
