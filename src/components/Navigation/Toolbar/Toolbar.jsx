@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { useVideos } from '../../../providers/Video';
+import { useTheme } from '../../../providers/Theme';
 import { searchYoutubeVideo } from '../../../externalAPI/youtube';
 
 import Input from '../../UI/Input/index';
@@ -17,7 +18,7 @@ const ToolbarStyled = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  background-color: #1c5476;
+  background-color: ${({ theme }) => theme.toolbarBackground};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,17 +53,19 @@ const ToolbarStyled = styled.div`
 
 const Toolbar = (props) => {
   const history = useHistory();
-  const { query, setQuery, setVideos } = useVideos();
 
-  const [checked, setChecked] = useState(false);
-  const [switchLabel, setSwitchLabel] = useState('Dark Mode');
+  const { query, setQuery, setVideos } = useVideos();
+  const { themes, currentTheme, setCurrentTheme } = useTheme();
+
+  const isLight = currentTheme !== 'light';
+  const [checked, setChecked] = useState(isLight);
+
   const [inputSearch, setInputSearch] = useState('wizeline');
 
   const toggleChecked = () => {
-    const label = checked ? 'Dark Mode' : 'Light Mode';
-
+    const newTheme = checked ? themes.light.id : themes.dark.id;
+    setCurrentTheme(newTheme);
     setChecked(!checked);
-    setSwitchLabel(label);
   };
 
   const getRelatedVideos = () => {
@@ -86,7 +89,7 @@ const Toolbar = (props) => {
   };
 
   return (
-    <ToolbarStyled role="toolbar">
+    <ToolbarStyled role="toolbar" theme={themes[currentTheme]}>
       <div className="LeftMenu">
         <DrawerToggle clicked={props.drawerToggleClicked} />
         <Input
@@ -99,7 +102,7 @@ const Toolbar = (props) => {
         <FormGroup>
           <FormControlLabel
             control={<Switch checked={checked} onChange={toggleChecked} />}
-            label={switchLabel}
+            label={themes[currentTheme].label}
           />
         </FormGroup>
         <Logo />
