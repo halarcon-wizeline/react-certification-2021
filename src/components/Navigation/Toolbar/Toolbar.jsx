@@ -4,8 +4,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { useVideos } from '../../../providers/Video';
 import { useTheme } from '../../../providers/Theme';
+
+import { useVideos } from '../../../providers/Video';
+import * as actionTypes from '../../../state/ActionTypes';
 import { searchYoutubeVideo } from '../../../externalAPI/youtube';
 
 import Input from '../../UI/Input/index';
@@ -54,8 +56,9 @@ const ToolbarStyled = styled.div`
 const Toolbar = (props) => {
   const history = useHistory();
 
-  const { query, setQuery, setVideos } = useVideos();
   const { themes, currentTheme, setCurrentTheme } = useTheme();
+  const { state, dispatch } = useVideos();
+  const { query } = state;
 
   const isLight = currentTheme !== 'light';
   const [checked, setChecked] = useState(isLight);
@@ -70,9 +73,9 @@ const Toolbar = (props) => {
 
   const getRelatedVideos = () => {
     if (inputSearch !== query) {
-      setQuery(inputSearch);
+      dispatch({ type: actionTypes.SET_QUERY, payload: inputSearch });
       searchYoutubeVideo(inputSearch).then((response) => {
-        setVideos(response);
+        dispatch({ type: actionTypes.SET_VIDEOS, payload: response });
         history.push('/');
       });
     }

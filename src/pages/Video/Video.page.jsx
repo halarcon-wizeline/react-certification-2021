@@ -17,11 +17,12 @@ const VideoPageStyled = styled.div`
   }
 `;
 
-const VideoPage = (props) => {
-  console.log('[VideoPage] props', props);
+const VideoPage = () => {
+  // console.log('[VideoPage] props', props);
 
   const history = useHistory();
-  const { selectedVideo } = useVideos();
+  const { state } = useVideos();
+  const { selectedVideo } = state;
 
   if (!selectedVideo.id) {
     history.push(`/`);
