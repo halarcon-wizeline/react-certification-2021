@@ -8,7 +8,7 @@ const initialState = {
   query: '',
   videos: data,
   selectedVideo: {},
-};;
+};
 
 const VideoContext = createContext({
   query: '',
