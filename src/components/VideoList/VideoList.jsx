@@ -27,9 +27,11 @@ const VideoListStyled = styled.ul`
 const VideoList = (props) => {
   // console.log('[VideoList]', props);
   const { state, dispatch } = useVideos();
-  const { videos } = state;
+  let { videos } = props.collection || state;
 
-  const collection = props.collection || videos;
+  if (props.collection) {
+    videos = props.collection;
+  }
 
   const history = useHistory();
 
@@ -40,8 +42,8 @@ const VideoList = (props) => {
 
   return (
     <VideoListStyled props={props}>
-      {collection.items.length > 0 &&
-        collection.items
+      {videos.items.length > 0 &&
+        videos.items
           .filter((item = []) => item.id.videoId)
           .map((item = []) => (
             <Link

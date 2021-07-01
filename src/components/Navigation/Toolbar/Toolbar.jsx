@@ -58,7 +58,7 @@ const Toolbar = (props) => {
 
   const { themes, currentTheme, setCurrentTheme } = useTheme();
   const { state, dispatch } = useVideos();
-  const { query } = state;
+  const { query } = props.query || state;
 
   const isLight = currentTheme !== 'light';
   const [checked, setChecked] = useState(isLight);
