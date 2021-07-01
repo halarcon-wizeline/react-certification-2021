@@ -1,7 +1,6 @@
 import React from 'react';
-import { useTheme } from '../../../../providers/Theme';
-
 import styled from 'styled-components';
+import { useTheme } from '../../../../providers/Theme';
 
 const VideoItemContentHorizontalStyled = styled.div`
   padding: 16px;

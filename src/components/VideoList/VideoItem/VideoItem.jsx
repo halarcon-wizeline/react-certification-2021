@@ -1,7 +1,6 @@
 import React from 'react';
-import { useTheme } from '../../../providers/Theme';
-
 import styled from 'styled-components';
+import { useTheme } from '../../../providers/Theme';
 
 import VideoItemImage from './VideoItemImage';
 import VideoItemContent from './VideoItemContent';
@@ -31,7 +30,6 @@ const VideoItemVerticalStyled = styled.li`
 `;
 
 const VideoItem = (props) => {
-
   const { themes, currentTheme } = useTheme();
 
   return props.display === 'vertical' ? (

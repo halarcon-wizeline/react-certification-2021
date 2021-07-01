@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTheme } from '../../providers/Theme';
 import styled from 'styled-components';
+import { useTheme } from '../../providers/Theme';
 
 const LayoutStyled = styled.div`
   width: 100vw;

@@ -17,7 +17,6 @@ import Layout from '../Layout';
 import Toolbar from '../Navigation/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer';
 
-
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;

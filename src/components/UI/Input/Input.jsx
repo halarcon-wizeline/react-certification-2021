@@ -1,8 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useTheme } from '../../../providers/Theme';
 // import SearchIcon from '@material-ui/icons/Search';
-
-import styled from 'styled-components';
 
 const InputStyled = styled.input`
   margin: 0;
@@ -19,7 +18,6 @@ const InputStyled = styled.input`
 `;
 
 const Input = (props) => {
-
   const { themes, currentTheme } = useTheme();
 
   return (
