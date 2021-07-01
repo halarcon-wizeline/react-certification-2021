@@ -4,7 +4,7 @@ function start() {
   // Initializes the client with the API key and the Translate API.
   gapi.client
     .init({
-      apiKey: 'AIzaSyAnpFG_NKQ_NDSFEcMb_aZnO6fL46QyGEg',
+      apiKey: 'AIzaSyABybSP1hG2axuYiV-toNchw2mHd3y-n3w',
     })
     .then(function () {
       // console.log(gapi.client);

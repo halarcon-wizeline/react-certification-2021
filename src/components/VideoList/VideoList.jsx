@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 
 import VideoItem from './VideoItem';
 import { useVideos } from '../../providers/Video';
+import * as actionTypes from '../../state/ActionTypes';
 
 const VideoListStyled = styled.ul`
   padding: ${({ props }) => (props.displayList === 'horizontal' ? '20px' : '0')};
@@ -25,21 +26,24 @@ const VideoListStyled = styled.ul`
 
 const VideoList = (props) => {
   // console.log('[VideoList]', props);
-  const { videos, setSelectedVideo } = useVideos();
+  const { state, dispatch } = useVideos();
+  let { videos } = props.collection || state;
 
-  const collection = props.collection || videos;
+  if (props.collection) {
+    videos = props.collection;
+  }
 
   const history = useHistory();
 
   const linkHandler = (item) => {
-    setSelectedVideo({ ...item });
+    dispatch({ type: actionTypes.SET_SELECTED_VIDEO, payload: item });
     history.push(`/${item.id.videoId}`);
   };
 
   return (
     <VideoListStyled props={props}>
-      {collection.items.length > 0 &&
-        collection.items
+      {videos.items.length > 0 &&
+        videos.items
           .filter((item = []) => item.id.videoId)
           .map((item = []) => (
             <Link

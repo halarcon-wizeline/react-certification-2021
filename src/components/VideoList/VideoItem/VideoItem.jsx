@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTheme } from '../../../providers/Theme';
 
 import VideoItemImage from './VideoItemImage';
 import VideoItemContent from './VideoItemContent';
@@ -13,10 +14,10 @@ const VideoItemHorizontalStyled = styled.li`
   margin: 10px;
   overflow: hidden;
   display: inline-block;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.videoItemBackground};
   transition: 0.3s;
   &:hover {
-    background-color: #eee;
+    background-color: ${({ theme }) => theme.videoItemBackgroundHover};
   }
 `;
 
@@ -25,17 +26,19 @@ const VideoItemVerticalStyled = styled.li`
   flex-direction: row;
   height: 98px;
   padding: 6px 10px;
-  border: 1px solid #eee;
+  border: ${({ theme }) => theme.videoItemBorder};
 `;
 
 const VideoItem = (props) => {
+  const { themes, currentTheme } = useTheme();
+
   return props.display === 'vertical' ? (
-    <VideoItemVerticalStyled>
+    <VideoItemVerticalStyled theme={themes[currentTheme]}>
       <VideoItemImage src={props.image} alt={props.title} {...props} />
       <VideoItemContent title={props.title} description={props.description} {...props} />
     </VideoItemVerticalStyled>
   ) : (
-    <VideoItemHorizontalStyled>
+    <VideoItemHorizontalStyled theme={themes[currentTheme]}>
       <VideoItemImage src={props.image} alt={props.title} {...props} />
       <VideoItemContent title={props.title} description={props.description} {...props} />
     </VideoItemHorizontalStyled>

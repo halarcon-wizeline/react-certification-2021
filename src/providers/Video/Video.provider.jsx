@@ -1,6 +1,14 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+
+import reducer from '../../state/VideoReducer';
 
 import data from '../../data/youtube-videos-mock.json';
+
+const initialState = {
+  query: '',
+  videos: data,
+  selectedVideo: {},
+};
 
 const VideoContext = createContext({
   query: '',
@@ -17,19 +25,13 @@ function useVideos() {
 }
 
 function VideoProvider({ children }) {
-  const [query, setQuery] = useState('');
-  const [videos, setVideos] = useState(data);
-  const [selectedVideo, setSelectedVideo] = useState({});
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <VideoContext.Provider
       value={{
-        videos,
-        setVideos,
-        selectedVideo,
-        setSelectedVideo,
-        query,
-        setQuery,
+        state,
+        dispatch,
       }}
     >
       {children}

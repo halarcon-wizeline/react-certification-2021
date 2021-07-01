@@ -1,16 +1,16 @@
 import React from 'react';
-// import SearchIcon from '@material-ui/icons/Search';
-
 import styled from 'styled-components';
+import { useTheme } from '../../../providers/Theme';
+// import SearchIcon from '@material-ui/icons/Search';
 
 const InputStyled = styled.input`
   margin: 0;
-  background-color: #3e6d8a;
+  background-color: ${({ theme }) => theme.inputBackground};
   border: none;
   border-radius: 5px;
   height: 100%;
   padding: 10px 20px;
-  color: white;
+  color: ${({ theme }) => theme.inputColor};
   width: 100%;
   &:focus {
     outline: none;
@@ -18,8 +18,11 @@ const InputStyled = styled.input`
 `;
 
 const Input = (props) => {
+  const { themes, currentTheme } = useTheme();
+
   return (
     <InputStyled
+      theme={themes[currentTheme]}
       role="textbox"
       type="text"
       placeholder={props.placeholder}
