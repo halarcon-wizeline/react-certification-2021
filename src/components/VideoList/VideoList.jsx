@@ -34,7 +34,7 @@ const VideoList = (props) => {
   if (props.collection) {
     videos = props.collection;
   }
-  let linkPrefix = props.linkPrefix || '/';
+  const linkPrefix = props.linkPrefix || '/';
 
   const linkHandler = (item) => {
     dispatch({ type: actionTypes.SET_SELECTED_VIDEO, payload: item });

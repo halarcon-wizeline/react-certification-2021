@@ -133,9 +133,8 @@ const Toolbar = (props) => {
           <Logo image={authState.avatarUrl} />
         )}
 
-        {/* logoUrl={props.avatarUrl}  */}
-        <Modal show={showLoginModal} modalClosed={closeLoginModalHandler}>
-          <AuthModal modalClosed={closeLoginModalHandler} />
+        <Modal show={showLoginModal} onClose={closeLoginModalHandler}>
+          <AuthModal onClose={closeLoginModalHandler} />
         </Modal>
       </div>
     </ToolbarStyled>
