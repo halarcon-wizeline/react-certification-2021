@@ -10,6 +10,7 @@ import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
+import SecretVideoPage from '../../pages/SecretVideo';
 import VideoPage from '../../pages/Video';
 import Private from '../Private';
 import Layout from '../Layout';
@@ -61,6 +62,9 @@ function App() {
                 </Route>
                 <Private exact path="/favorites">
                   <SecretPage />
+                </Private>
+                <Private exact path="/favorites/:id">
+                  <SecretVideoPage />
                 </Private>
                 <Route exact path="/:id">
                   <VideoPage />

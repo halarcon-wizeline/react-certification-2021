@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useAuth } from '../../providers/Auth';
 import { useVideos } from '../../providers/Video';
-import Button from '../../components/UI/Button';
+import Button from '../UI/Button';
 
 import * as actionTypes from '../../state/ActionTypes';
 
@@ -21,6 +21,7 @@ const VideoReproducerStyled = styled.div`
     display: flex;
     justify-content: space-between;
     & h2 {
+      width: 100%;
       font-weight: 400;
       line-height: 1.334;
       letter-spacing: 0em;
@@ -41,11 +42,15 @@ const VideoReproducer = (props) => {
   const { authenticated } = authState;
   const { dispatch: videosDispatch } = useVideos();
 
-  const initIsFavorite = props.video.isFavorite || false;
-
+  let initIsFavorite = props.video.isFavorite || false;
   const [isFavorite, setIsFavorite] = useState(initIsFavorite);
 
   const src = `https://www.youtube.com/embed/${props.video.id.videoId}?controls=0&autoplay=0`;
+
+  useEffect(() => {
+    initIsFavorite = props.video.isFavorite || false;
+    setIsFavorite(props.video.isFavorite);
+  }, [props.video.isFavorite]);
 
   const toggleFavoriteVideoHandler = () => {
     setIsFavorite(!isFavorite);
@@ -53,7 +58,7 @@ const VideoReproducer = (props) => {
 
     videosDispatch({
       type: actionTypes.ADD_TO_FAVORITES,
-      payload: { video: props.video, isFavorite: isFavorite },
+      payload: { video: props.video, isFavorite },
     });
   };
 

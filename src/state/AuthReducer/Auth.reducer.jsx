@@ -18,10 +18,10 @@ const setUser = (state, payload) => {
   localStorage.setItem('REACT-CHALLENGE-AUTH', JSON.stringify(user));
   return user;
 };
-  
+
 const failed = (state, error) => {
   console.log('failed');
-  return { ...state, error: error, authenticated: false };
+  return { ...state, error, authenticated: false };
 };
 
 export const authenticate = (state, payload) => {
@@ -30,7 +30,7 @@ export const authenticate = (state, payload) => {
 
   loginApi(username, password)
     .then(function (user) {
-        return {
+      return {
         ...state,
         id: user.id,
         name: user.name,
@@ -65,7 +65,7 @@ const loadSettings = (state) => {
     authenticated: Boolean(savedSettings),
   };
 };
-  
+
 const logout = () => {
   // console.log('[action auth] logout');
   localStorage.removeItem('REACT-CHALLENGE-AUTH');

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ButtonStyled = styled.div`
+const ButtonStyled = styled.button`
   background-color: transparent;
   border: none;
   color: #333;
@@ -10,7 +10,9 @@ const ButtonStyled = styled.div`
   font: inherit;
   padding: 10px;
   margin: 10px;
-  font-weight: bold;
+  font-weight: 600;
+  width: 170px;
+  font-size: 15px;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);

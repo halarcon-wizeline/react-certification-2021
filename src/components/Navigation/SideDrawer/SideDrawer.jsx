@@ -61,7 +61,6 @@ const SideDrawer = (props) => {
     props.onClose();
   };
 
-
   return (
     <>
       <Backdrop show={props.open} clicked={props.onClose} />

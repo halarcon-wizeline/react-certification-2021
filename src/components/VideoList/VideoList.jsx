@@ -29,15 +29,16 @@ const VideoList = (props) => {
   const { state, dispatch } = useVideos();
   let { videos } = props.collection || state;
 
+  const history = useHistory();
+
   if (props.collection) {
     videos = props.collection;
   }
-
-  const history = useHistory();
+  let linkPrefix = props.linkPrefix || '/';
 
   const linkHandler = (item) => {
     dispatch({ type: actionTypes.SET_SELECTED_VIDEO, payload: item });
-    history.push(`/${item.id.videoId}`);
+    history.push(`${linkPrefix}${item.id.videoId}`);
   };
 
   return (
@@ -48,7 +49,7 @@ const VideoList = (props) => {
           .map((item = []) => (
             <Link
               key={item.id.videoId}
-              to={`/${item.id.videoId}`}
+              to={`${linkPrefix}${item.id.videoId}`}
               onClick={() => linkHandler(item)}
             >
               <VideoItem

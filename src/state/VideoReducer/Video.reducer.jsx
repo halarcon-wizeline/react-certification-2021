@@ -1,12 +1,12 @@
 import * as actionTypes from '../ActionTypes';
 
-function isFavoriteVideo (video, favoriteVideos) {
+function isFavoriteVideo(video, favoriteVideos) {
   // console.log('[actions] isFavoriteVideo');
   const videoFound = favoriteVideos.items.findIndex(
     (item) => item.id.videoId === video.id.videoId
   );
   return videoFound;
-};
+}
 
 function setSelectedVideo(state, video) {
   const newVideo = {
@@ -16,7 +16,7 @@ function setSelectedVideo(state, video) {
   const newState = {
     ...state,
     selectedVideo: newVideo,
-  };;
+  };
   return { ...newState };
 }
 
@@ -59,7 +59,7 @@ function writeUserSettings(state) {
 }
 
 const toggleFavoriteVideo = (state, video, isFavorite) => {
-  let newState = { ...state };
+  const newState = { ...state };
   const favoriteIndex = isFavoriteVideo(video, newState.favoriteVideos);
 
   if (!isFavorite) {
@@ -71,23 +71,22 @@ const toggleFavoriteVideo = (state, video, isFavorite) => {
       newState.favoriteVideos.items.push(newVideo);
       newState.selectedVideo = newVideo;
     }
-  } else {
-    if (favoriteIndex > -1) {
-      const newVideo = {
-        ...video,
-        isFavorite: false,
-      };
-      newState.favoriteVideos.items.splice(favoriteIndex, 1);
-      newState.selectedVideo = newVideo;
-    }
+  } else if (favoriteIndex > -1) {
+    const newVideo = {
+      ...video,
+      isFavorite: false,
+    };
+    newState.favoriteVideos.items.splice(favoriteIndex, 1);
+    newState.selectedVideo = newVideo;
   }
 
+  console.log(newState);
   writeUserSettings(newState);
   return { ...newState };
 };
 
 const toggleTheme = (state, theme) => {
-  let newState = { ...state };
+  const newState = { ...state };
   newState.theme = theme;
 
   writeUserSettings(newState);
@@ -95,7 +94,7 @@ const toggleTheme = (state, theme) => {
 };
 
 export default function reducer(state, action) {
-  // console.log('[videoReducer] ', action.type, 'state', state);
+  console.log('[videoReducer] ', action.type, 'state', state);
   switch (action.type) {
     case actionTypes.SET_SELECTED_VIDEO:
       return setSelectedVideo(state, action.payload);

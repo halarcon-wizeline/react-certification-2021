@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // import { useHistory } from 'react-router';
+import styled from 'styled-components';
 import { useVideos } from '../../providers/Video';
 import { useAuth } from '../../providers/Auth';
-import styled from 'styled-components';
 
 import Input from '../../components/UI/Input';
 import Button from '../../components/UI/Button';
@@ -98,40 +98,33 @@ const AuthModal = (props) => {
   });
 
   const inputChangedHandler = (event, inputIdentifier) => {
-    // console.log(event, inputIdentifier);
-    // console.log(event.target.value);
-
     const updatedFormElement = updateObject(controls.controls[inputIdentifier], {
       value: event.target.value,
     });
-    // console.log(updatedFormElement);
 
     const updatedForm = updateObject(controls.controls, {
       [inputIdentifier]: updatedFormElement,
     });
 
-    // console.log(updatedForm);
     setControls({ ...controls, controls: updatedForm });
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    await loginApi(controls.controls.username.value, controls.controls.password.value)
-      .then((result) => {
-        // console.log(result);
-        authDispatch({
-          type: actionTypes.AUTH_SET_USER,
-          payload: result
-        });
-
-        videosDispatch({
-          type: actionTypes.LOAD_USER_SETTINGS
-        });
-        props.modalClosed();
-        console.log("fin");
+    await loginApi(
+      controls.controls.username.value,
+      controls.controls.password.value
+    ).then((result) => {
+      authDispatch({
+        type: actionTypes.AUTH_SET_USER,
+        payload: result,
       });
-      await console.log("fin fin");
+      videosDispatch({
+        type: actionTypes.LOAD_USER_SETTINGS,
+      });
+      props.modalClosed();
+    });
   };
 
   const formElementsArray = [];
