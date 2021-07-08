@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 import reducer from '../../state/VideoReducer';
+import * as actionTypes from '../../state/ActionTypes';
 
 import data from '../../data/youtube-videos-mock.json';
 
@@ -8,12 +9,16 @@ const initialState = {
   query: '',
   videos: data,
   selectedVideo: {},
+  favoriteVideos: { items: [] },
+  theme: 'light',
 };
 
 const VideoContext = createContext({
   query: '',
   videos: [],
   selectedVideo: {},
+  favoriteVideos: { items: [] },
+  theme: 'light',
 });
 
 function useVideos() {
@@ -25,7 +30,14 @@ function useVideos() {
 }
 
 function VideoProvider({ children }) {
+  // console.log('[VideoProvider] loaded');
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    dispatch({
+      type: actionTypes.LOAD_USER_SETTINGS,
+    });
+  }, []);
 
   return (
     <VideoContext.Provider

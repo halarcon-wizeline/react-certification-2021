@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import { useAuth } from '../../providers/Auth';
+import { useVideos } from '../../providers/Video';
+import Button from '../../components/UI/Button';
+
+import * as actionTypes from '../../state/ActionTypes';
 
 const VideoReproducerStyled = styled.div`
   width: 70%;
@@ -30,6 +36,27 @@ const VideoReproducerStyled = styled.div`
 `;
 
 const VideoReproducer = (props) => {
+  // console.log('[VideoReproducer] props', props);
+  const { state: authState } = useAuth();
+  const { authenticated } = authState;
+  const { dispatch: videosDispatch } = useVideos();
+
+  const initIsFavorite = props.video.isFavorite || false;
+
+  const [isFavorite, setIsFavorite] = useState(initIsFavorite);
+
+  const src = `https://www.youtube.com/embed/${props.video.id.videoId}?controls=0&autoplay=0`;
+
+  const toggleFavoriteVideoHandler = () => {
+    setIsFavorite(!isFavorite);
+    console.log('toggleFavoriteVideoHandler');
+
+    videosDispatch({
+      type: actionTypes.ADD_TO_FAVORITES,
+      payload: { video: props.video, isFavorite: isFavorite },
+    });
+  };
+
   return (
     <VideoReproducerStyled>
       <iframe
@@ -37,14 +64,24 @@ const VideoReproducer = (props) => {
         height="450"
         allowFullScreen
         frameBorder="0"
-        title={props.title}
-        src={props.src}
+        title={props.video.snippet.title}
+        src={src}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       />
       <div className="title">
-        <h2>{props.title}</h2>
+        <h2>{props.video.snippet.title}</h2>
+
+        {authenticated ? (
+          <Button
+            className="addButton"
+            type="submit"
+            onClick={toggleFavoriteVideoHandler}
+          >
+            {isFavorite ? 'REMOVE FROM ' : 'ADD TO '} FAVORITES
+          </Button>
+        ) : null}
       </div>
-      <p className="description">{props.description}</p>
+      <p className="description">{props.video.snippet.description}</p>
     </VideoReproducerStyled>
   );
 };

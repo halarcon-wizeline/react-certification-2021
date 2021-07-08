@@ -18,7 +18,7 @@ const VideoPageStyled = styled.div`
 `;
 
 const VideoPage = () => {
-  // console.log('[VideoPage] props', props);
+  console.log('[VideoPage]');
 
   const history = useHistory();
   const { state } = useVideos();
@@ -28,16 +28,9 @@ const VideoPage = () => {
     history.push(`/`);
   }
 
-  const src = `https://www.youtube.com/embed/${selectedVideo.id.videoId}?controls=0&autoplay=0`;
-
   return (
     <VideoPageStyled>
-      <VideoReproducer
-        id={selectedVideo.id.videoId}
-        src={src}
-        title={selectedVideo.snippet.title}
-        description={selectedVideo.snippet.description}
-      />
+      <VideoReproducer video={selectedVideo} />
       <div className="videoList">
         <VideoList displayList="vertical" />
       </div>
