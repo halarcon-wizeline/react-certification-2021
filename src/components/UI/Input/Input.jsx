@@ -5,8 +5,6 @@ import styled from 'styled-components';
 
 const InputStyled = styled.input`
   margin: 0;
-  padding: 0;
-  margin: 0;
   background-color: #3e6d8a;
   border: none;
   border-radius: 5px;
@@ -22,10 +20,9 @@ const InputStyled = styled.input`
 const Input = (props) => {
   return (
     <InputStyled
-      role="input"
-      className="Input"
+      role="textbox"
       type="text"
-      placeholder="Search"
+      placeholder={props.placeholder}
       value={props.value}
       onChange={props.changed}
       onKeyDown={props.keyDown}

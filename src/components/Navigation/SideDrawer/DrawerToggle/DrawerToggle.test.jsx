@@ -8,12 +8,11 @@ describe('Render DrawerToggle', () => {
     expect(screen.getByTestId('drawer-toggle')).toBeTruthy();
   });
 
-  //   test('calls onClick when clicked', () => {
-  //     const handleClick = jest.fn();
-  //     render(<DrawerToggle onClick={handleClick} />);
-  //     const toggle = screen.getByTestId('drawer-toggle');
-  //     fireEvent.click(toggle);
-  //     expect(handleClick).toHaveBeenCalledTimes(1);
-  //     debugger;
-  //   });
+  test.skip('calls onClick when clicked', () => {
+    const handleClick = jest.fn();
+    render(<DrawerToggle onClick={handleClick} />);
+    const toggle = screen.getByTestId('drawer-toggle');
+    fireEvent.click(toggle);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
 });

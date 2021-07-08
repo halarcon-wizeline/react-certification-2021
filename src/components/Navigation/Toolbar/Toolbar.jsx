@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import { useVideos } from '../../../providers/Video';
+import { searchYoutubeVideo } from '../../../externalAPI/youtube';
 
 import Input from '../../UI/Input/index';
 import Logo from '../../Logo/Logo';
@@ -33,8 +35,8 @@ const ToolbarStyled = styled.div`
     display: flex;
     height: 50%;
     @media screen and (max-width: 425px) {
-        height: 60%;
-        width: 100%;
+      height: 60%;
+      width: 100%;
     }
   }
   & .RightMenu {
@@ -43,12 +45,15 @@ const ToolbarStyled = styled.div`
     height: 100%;
     margin-top: 15px;
     @media screen and (max-width: 425px) {
-        display: none;
+      display: none;
     }
   }
 `;
 
 const Toolbar = (props) => {
+  const history = useHistory();
+  const { query, setQuery, setVideos } = useVideos();
+
   const [checked, setChecked] = useState(false);
   const [switchLabel, setSwitchLabel] = useState('Dark Mode');
   const [inputSearch, setInputSearch] = useState('wizeline');
@@ -60,11 +65,25 @@ const Toolbar = (props) => {
     setSwitchLabel(label);
   };
 
+  const getRelatedVideos = () => {
+    if (inputSearch !== query) {
+      setQuery(inputSearch);
+      searchYoutubeVideo(inputSearch).then((response) => {
+        setVideos(response);
+        history.push('/');
+      });
+    }
+  };
+
   const inputChangeHandler = (event) => {
     setInputSearch(event.target.value);
   };
 
-  const inputKeyDownHandler = () => {};
+  const inputKeyDownHandler = (event) => {
+    if (event.key === 'Enter') {
+      getRelatedVideos(inputSearch);
+    }
+  };
 
   return (
     <ToolbarStyled role="toolbar">
