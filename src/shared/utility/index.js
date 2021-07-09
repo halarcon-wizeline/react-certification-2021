@@ -1,1 +1,0 @@
-export { updateObject } from './utility';

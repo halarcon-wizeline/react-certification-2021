@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { useVideos } from '../../providers/Video';
 import { useAuth } from '../../providers/Auth';
 
-import InputAuth from '../../components/UI/InputAuth';
-import Button from '../../components/UI/Button';
-import { updateObject } from '../../shared/utility';
+import InputAuth from '../UI/InputAuth';
+import Button from '../UI/Button';
+import { updateObject } from '../../utils/utility';
 
 import * as actionTypes from '../../state/ActionTypes';
 
 import loginApi from '../../data/login.api';
 
-const AuthModalStyled = styled.div`
+const FormModalStyled = styled.div`
   div.header {
     flex: 0 0 auto;
     margin: 0;
@@ -41,7 +41,7 @@ const AuthModalStyled = styled.div`
   }
 `;
 
-const AuthModal = (props) => {
+const FormModal = (props) => {
   const { dispatch: authDispatch } = useAuth();
   const { dispatch: videosDispatch } = useVideos();
 
@@ -122,7 +122,7 @@ const AuthModal = (props) => {
   ));
 
   return (
-    <AuthModalStyled>
+    <FormModalStyled>
       <form onSubmit={submitHandler}>
         <div className="header">Login</div>
         <div className="form">
@@ -138,8 +138,8 @@ const AuthModal = (props) => {
           </Button>
         </div>
       </form>
-    </AuthModalStyled>
+    </FormModalStyled>
   );
 };
 
-export default AuthModal;
+export default FormModal;

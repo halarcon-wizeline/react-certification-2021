@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Toolbar from './Toolbar';
-import { useVideos } from '../../../providers/Video';
 import AuthProvider from '../../../providers/Auth';
 import VideoProvider from '../../../providers/Video';
 import ThemeProvider from '../../../providers/Theme';

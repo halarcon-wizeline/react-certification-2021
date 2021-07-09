@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
 
 import VideoList from '../../components/VideoList';
 import VideoReproducer from '../../components/VideoReproducer';
@@ -21,7 +20,6 @@ const VideoPageStyled = styled.div`
 const VideoPage = () => {
   console.log('[VideoPage]');
 
-  const history = useHistory();
   const { state } = useVideos();
   const { selectedVideo } = state;
 

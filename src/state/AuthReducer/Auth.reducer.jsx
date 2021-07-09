@@ -1,7 +1,7 @@
 import * as actionTypes from '../ActionTypes';
 import * as constants from '../../utils/constants';
 import { storage } from '../../utils/storage';
-import loginApi from '../../data/login.api';
+// import loginApi from '../../data/login.api';
 
 const setUser = (state, payload) => {
   // console.log('setUser');

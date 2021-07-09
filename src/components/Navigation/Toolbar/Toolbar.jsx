@@ -16,7 +16,7 @@ import Logo from '../../Logo/Logo';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
 import Modal from '../../UI/Modal';
-import AuthModal from '../../../containers/AuthModal';
+import FormModal from '../../FormModal';
 
 const ToolbarStyled = styled.div`
   height: 64px;
@@ -135,7 +135,7 @@ const Toolbar = (props) => {
         )}
 
         <Modal show={showLoginModal} onClose={closeLoginModalHandler}>
-          <AuthModal onClose={closeLoginModalHandler} />
+          <FormModal onClose={closeLoginModalHandler} />
         </Modal>
       </div>
     </ToolbarStyled>

@@ -52,12 +52,11 @@ describe('AuthReducer', () => {
         type: actionTypes.AUTH_LOGOUT,
       });
     });
-    expect(result.current.state.id).toBeNull;
-    expect(result.current.state.name).toBeNull;
+    expect(result.current.state.id).toBeNull();
+    expect(result.current.state.name).toBeNull();
   });
 
   test.skip('AuthReducer AUTH_LOAD_SETTINGS ', async () => {
     // TODO investigate how to test storage
   });
 });
-
