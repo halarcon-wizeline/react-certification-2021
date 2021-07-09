@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { useTheme } from '../../providers/Theme';
 
 import VideoItem from './VideoItem';
 import { useVideos } from '../../providers/Video';
@@ -22,12 +23,17 @@ const VideoListStyled = styled.ul`
   a {
     width: ${({ props }) => (props.displayList === 'horizontal' ? '' : '100%')};
   }
+  .active {
+    background-color: ${({ theme }) => theme.videoItemBackgroundHover};
+  }
 `;
 
 const VideoList = (props) => {
   // console.log('[VideoList]', props);
+  const { themes, currentTheme } = useTheme();
   const { state, dispatch } = useVideos();
   let { videos } = props.collection || state;
+  let { selectedVideo } = state;
 
   const history = useHistory();
 
@@ -42,12 +48,19 @@ const VideoList = (props) => {
   };
 
   return (
-    <VideoListStyled props={props}>
+    <VideoListStyled props={props} theme={themes[currentTheme]}>
       {videos.items.length > 0 &&
         videos.items
           .filter((item = []) => item.id.videoId)
           .map((item = []) => (
             <Link
+              className={
+                (selectedVideo.id &&
+                props.displayList === 'vertical' &&
+                item.id.videoId === selectedVideo.id.videoId)
+                  ? 'active'
+                  : ''
+              }
               key={item.id.videoId}
               to={`${linkPrefix}${item.id.videoId}`}
               onClick={() => linkHandler(item)}
