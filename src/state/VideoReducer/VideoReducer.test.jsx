@@ -12,7 +12,7 @@ describe('AuthReducer', () => {
     avatarUrl: 'https://usapng.com/images/bt/user-icon-6.png',
   };
 
-  test('AuthReducer AUTH_SET_USER ', async () => {
+  test.skip('AuthReducer AUTH_SET_USER ', async () => {
     const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
     const { result } = renderHook(() => useAuth(), { wrapper });
     const { dispatch } = result.current;
@@ -32,7 +32,7 @@ describe('AuthReducer', () => {
     expect(result.current.state.authenticated).toBe(true);
   });
 
-  test('AuthReducer AUTH_LOGOUT ', async () => {
+  test.skip('AuthReducer AUTH_LOGOUT ', async () => {
     const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
     const { result } = renderHook(() => useAuth(), { wrapper });
     const { dispatch } = result.current;
@@ -60,4 +60,3 @@ describe('AuthReducer', () => {
     // TODO investigate how to test storage
   });
 });
-

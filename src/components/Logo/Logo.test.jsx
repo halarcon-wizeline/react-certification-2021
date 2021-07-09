@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Logo from './Logo';
 
 describe('Render Logo', () => {
@@ -14,5 +14,13 @@ describe('Render Logo', () => {
     const logo = screen.getByRole('img');
     expect(logo).toHaveAttribute('src', '/logo.svg');
     expect(logo).toHaveAttribute('alt', 'Logo');
+  });
+
+  test('Logo should call click if user is not authenticated', () => {
+    const handleClick = jest.fn();
+    render(<Logo onClick={handleClick} />);
+    const logo = screen.getByRole('img');
+    fireEvent.click(logo);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

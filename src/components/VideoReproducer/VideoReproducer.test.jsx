@@ -1,9 +1,20 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
+import { act } from 'react-dom/test-utils';
+
+import * as actionTypes from '../../state/ActionTypes';
 import VideoReproducer from './VideoReproducer';
-import AuthProvider from '../../providers/Auth';
+import AuthProvider, { useAuth } from '../../providers/Auth';
+import VideosProvider from '../../providers/Video';
 
 describe('Render VideoReproducer', () => {
+  const mockedUser = {
+    id: '123',
+    name: 'Wizeline',
+    avatarUrl: 'https://usapng.com/images/bt/user-icon-6.png',
+  };
+
   const video = {
     kind: 'youtube#searchResult',
     etag: 'erqeM78PZDWIBe8qOGHGM2WdSE8',
@@ -79,5 +90,49 @@ describe('Render VideoReproducer', () => {
     expect(screen.queryByDisplayValue('ADD TO FAVORITES')).toBeNull();
   });
 
-  test.skip('it should render button "Add to Favorites" if authenticated', () => {});
+  test('it should render button "Add to Favorites" if authenticated', () => {
+    const favoriteVideo = { ...video };
+    favoriteVideo.isFavorite = false;
+
+    const wrapper = ({ children }) => (
+      <AuthProvider>
+        <VideoReproducer video={favoriteVideo} />
+        {children}
+      </AuthProvider>
+    );
+
+    const { result } = renderHook(() => useAuth(), { wrapper });
+    const { dispatch } = result.current;
+
+    act(() => {
+      dispatch({
+        type: actionTypes.AUTH_SET_USER,
+        payload: mockedUser,
+      });
+    });
+
+    render(
+      <AuthProvider>
+        <VideosProvider>
+          <VideoReproducer video={favoriteVideo} />
+        </VideosProvider>
+      </AuthProvider>
+    );
+
+    expect(result.current.state.id).toBe('123');
+    expect(result.current.state.authenticated).toBe(true);
+
+    const button = screen.queryByRole('button', {
+      name: /ADD TO FAVORITES/i,
+    });
+    expect(button).toBeVisible();
+
+    fireEvent.click(button);
+
+    expect(screen.queryByRole('button', { name: /ADD TO FAVORITES/i })).toBeNull();
+    expect(
+      screen.queryByRole('button', { name: /REMOVE FROM FAVORITES/i })
+    ).toBeVisible();
+  });
+
 });

@@ -116,6 +116,7 @@ const Toolbar = (props) => {
         <DrawerToggle onClick={props.drawerToggleClicked} />
         <Input
           value={inputSearch}
+          placeholder="Search"
           keyDown={inputKeyDownHandler}
           onChange={inputChangeHandler}
         />

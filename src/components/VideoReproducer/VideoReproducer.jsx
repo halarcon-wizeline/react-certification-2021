@@ -38,9 +38,9 @@ const VideoReproducerStyled = styled.div`
 
 const VideoReproducer = (props) => {
   // console.log('[VideoReproducer] props', props);
-  const { state: authState } = useAuth();
-  const { authenticated } = authState;
-  const { dispatch: videosDispatch } = useVideos();
+  const { state } = useAuth();
+  const { authenticated } = state;
+  const { dispatch } = useVideos();
 
   let initIsFavorite = props.video.isFavorite || false;
   const [isFavorite, setIsFavorite] = useState(initIsFavorite);
@@ -54,9 +54,8 @@ const VideoReproducer = (props) => {
 
   const toggleFavoriteVideoHandler = () => {
     setIsFavorite(!isFavorite);
-    console.log('toggleFavoriteVideoHandler');
 
-    videosDispatch({
+    dispatch({
       type: actionTypes.ADD_TO_FAVORITES,
       payload: { video: props.video, isFavorite },
     });
@@ -75,13 +74,10 @@ const VideoReproducer = (props) => {
       />
       <div className="title">
         <h2>{props.video.snippet.title}</h2>
+        -{authenticated}-
 
         {authenticated ? (
-          <Button
-            className="addButton"
-            type="submit"
-            onClick={toggleFavoriteVideoHandler}
-          >
+          <Button type="submit" onClick={toggleFavoriteVideoHandler}>
             {isFavorite ? 'REMOVE FROM ' : 'ADD TO '} FAVORITES
           </Button>
         ) : null}

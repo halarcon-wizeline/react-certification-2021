@@ -54,14 +54,14 @@ function loadUserSettings(state) {
 }
 
 function writeUserSettings(state) {
-  console.log('[actions] writeUserSettings');
+  // console.log('[actions] writeUserSettings');
   const settings = { ...state };
   delete settings.query;
   delete settings.videos;
   delete settings.selectedVideo;
 
   storage.set(constants.REACT_CHALLENGE_USER_PREFERENCES, settings);
-  console.log('Settings saved', state);
+  // console.log('Settings saved', state);
 }
 
 const toggleFavoriteVideo = (state, video, isFavorite) => {
@@ -86,7 +86,7 @@ const toggleFavoriteVideo = (state, video, isFavorite) => {
     newState.selectedVideo = newVideo;
   }
 
-  console.log(newState);
+  // console.log(newState);
   writeUserSettings(newState);
   return { ...newState };
 };

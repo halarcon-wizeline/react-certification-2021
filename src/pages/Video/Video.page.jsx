@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import VideoList from '../../components/VideoList';
 import VideoReproducer from '../../components/VideoReproducer';
 import { useVideos } from '../../providers/Video';
+import NotFound from '../NotFound';
 
 const VideoPageStyled = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const VideoPage = () => {
   const { selectedVideo } = state;
 
   if (!selectedVideo.id) {
-    history.push(`/`);
+    return <NotFound />;
   }
 
   return (
