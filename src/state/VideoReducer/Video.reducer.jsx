@@ -1,5 +1,6 @@
 import * as actionTypes from '../ActionTypes';
 import * as constants from '../../utils/constants';
+import { storage } from '../../utils/storage';
 
 function isFavoriteVideo(video, favoriteVideos) {
   // console.log('[actions] isFavoriteVideo');
@@ -38,8 +39,7 @@ function setVideos(state, payload) {
 function loadUserSettings(state) {
   // console.log('[actions] loadUserSettings');
 
-  let savedSettings = localStorage.getItem(constants.REACT_CHALLENGE_USER_PREFERENCES);
-  savedSettings = JSON.parse(savedSettings);
+  let savedSettings = storage.get(constants.REACT_CHALLENGE_USER_PREFERENCES);
 
   if (savedSettings === null) {
     savedSettings = { theme: 'light', favoriteVideos: { items: [] } };
@@ -60,10 +60,7 @@ function writeUserSettings(state) {
   delete settings.videos;
   delete settings.selectedVideo;
 
-  localStorage.setItem(
-    constants.REACT_CHALLENGE_USER_PREFERENCES,
-    JSON.stringify(settings)
-  );
+  storage.set(constants.REACT_CHALLENGE_USER_PREFERENCES, settings);
   console.log('Settings saved', state);
 }
 

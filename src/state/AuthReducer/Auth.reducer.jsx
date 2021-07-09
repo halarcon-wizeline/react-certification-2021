@@ -1,5 +1,6 @@
 import * as actionTypes from '../ActionTypes';
 import * as constants from '../../utils/constants';
+import { storage } from '../../utils/storage';
 import loginApi from '../../data/login.api';
 
 const start = (state) => {
@@ -16,7 +17,7 @@ const setUser = (state, payload) => {
     error: null,
     authenticated: true,
   };
-  localStorage.setItem(constants.REACT_CHALLENGE_AUTH, JSON.stringify(user));
+  storage.set(constants.REACT_CHALLENGE_AUTH, user);
   return user;
 };
 
@@ -48,8 +49,7 @@ export const authenticate = (state, payload) => {
 
 const loadSettings = (state) => {
   // console.log('[action auth] isAuthenticated');
-  let savedSettings = localStorage.getItem(constants.REACT_CHALLENGE_AUTH);
-  savedSettings = JSON.parse(savedSettings);
+  const savedSettings = storage.get(constants.REACT_CHALLENGE_AUTH);
 
   if (savedSettings) {
     return {
@@ -69,7 +69,7 @@ const loadSettings = (state) => {
 
 const logout = () => {
   // console.log('[action auth] logout');
-  localStorage.removeItem(constants.REACT_CHALLENGE_AUTH);
+  // localStorage.removeItem(constants.REACT_CHALLENGE_AUTH);
   return {
     id: null,
     name: null,
