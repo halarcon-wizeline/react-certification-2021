@@ -5,7 +5,7 @@ import Backdrop from './Backdrop';
 describe('Render Backdrop', () => {
   test('Backdrop NOT displayed', () => {
     render(<Backdrop show={false} />);
-    expect(screen.getByTestId('backdrop')).toBeNull();
+    expect(screen.queryByTestId('backdrop')).toBeNull();
   });
 
   test('Backdrop to be displayed', () => {
@@ -13,11 +13,11 @@ describe('Render Backdrop', () => {
     expect(screen.getByTestId('backdrop')).not.toBeNull();
   });
 
-  test('calls onClick when clicked', () => {
+  test('Backdrop displayed to call click', () => {
     const handleClick = jest.fn();
-    render(<Backdrop onClick={handleClick} />);
-    const clicked = screen.getByTestId('backdrop');
-    fireEvent.click(clicked);
+    render(<Backdrop show={true} onClick={handleClick} />);
+    const backdrop = screen.getByTestId('backdrop');
+    fireEvent.click(backdrop);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

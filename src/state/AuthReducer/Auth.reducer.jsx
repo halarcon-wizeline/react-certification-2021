@@ -6,7 +6,7 @@ const start = (state) => {
 };
 
 const setUser = (state, payload) => {
-  console.log('setUser');
+  // console.log('setUser');
   const user = {
     ...state,
     id: payload.id,
