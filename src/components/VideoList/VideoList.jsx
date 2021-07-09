@@ -33,7 +33,6 @@ const VideoList = (props) => {
   const { themes, currentTheme } = useTheme();
   const { state, dispatch } = useVideos();
   let { videos } = props.collection || state;
-  let { selectedVideo } = state;
 
   const history = useHistory();
 
@@ -55,9 +54,9 @@ const VideoList = (props) => {
           .map((item = []) => (
             <Link
               className={
-                (selectedVideo.id &&
+                state !== undefined &&
                 props.displayList === 'vertical' &&
-                item.id.videoId === selectedVideo.id.videoId)
+                item.id.videoId === state.selectedVideo.id.videoId
                   ? 'active'
                   : ''
               }
