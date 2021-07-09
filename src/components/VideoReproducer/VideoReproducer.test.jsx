@@ -134,5 +134,4 @@ describe('Render VideoReproducer', () => {
       screen.queryByRole('button', { name: /REMOVE FROM FAVORITES/i })
     ).toBeVisible();
   });
-
 });

@@ -20,7 +20,7 @@ describe('Private route', () => {
         <BrowserRouter>
           {children}
           <Private exact path="/favorites">
-            <SecretPage></SecretPage>
+            <SecretPage />
           </Private>
         </BrowserRouter>
       </AuthProvider>

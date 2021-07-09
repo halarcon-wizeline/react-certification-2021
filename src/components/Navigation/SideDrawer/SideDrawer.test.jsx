@@ -32,7 +32,6 @@ describe('Authenticated SideDrawer', () => {
   };
 
   test('SideDrawer shows Secret links if authenticated', () => {
-
     const wrapper = ({ children }) => (
       <BrowserRouter>
         <AuthProvider>
@@ -46,9 +45,9 @@ describe('Authenticated SideDrawer', () => {
 
     act(() => {
       dispatch({
-          type: actionTypes.AUTH_SET_USER,
-          payload: mockedUser,
-        });
+        type: actionTypes.AUTH_SET_USER,
+        payload: mockedUser,
+      });
     });
 
     render(
@@ -65,7 +64,6 @@ describe('Authenticated SideDrawer', () => {
   });
 
   test('SideDrawer click Secret "Logout" link if authenticated', () => {
-
     const wrapper = ({ children }) => (
       <BrowserRouter>
         <AuthProvider>
@@ -99,6 +97,5 @@ describe('Authenticated SideDrawer', () => {
     fireEvent.click(logoutLink);
     fireEvent.click(logoutLink);
     expect(handleClick).toHaveBeenCalledTimes(2);
-
   });
 });

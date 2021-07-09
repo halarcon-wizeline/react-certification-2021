@@ -74,8 +74,6 @@ const VideoReproducer = (props) => {
       />
       <div className="title">
         <h2>{props.video.snippet.title}</h2>
-        -{authenticated}-
-
         {authenticated ? (
           <Button type="submit" onClick={toggleFavoriteVideoHandler}>
             {isFavorite ? 'REMOVE FROM ' : 'ADD TO '} FAVORITES

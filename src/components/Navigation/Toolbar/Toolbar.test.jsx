@@ -103,5 +103,4 @@ describe('Render Toolbar', () => {
 
     fireEvent.change(input, { key: 'Enter', code: 'Enter' });
   });
-
 });
