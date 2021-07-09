@@ -55,7 +55,7 @@ function loadUserSettings(state) {
 
 function writeUserSettings(state) {
   console.log('[actions] writeUserSettings');
-  let settings = { ...state };
+  const settings = { ...state };
   delete settings.query;
   delete settings.videos;
   delete settings.selectedVideo;

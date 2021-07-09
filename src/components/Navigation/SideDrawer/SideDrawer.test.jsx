@@ -33,7 +33,7 @@ describe('Render SideDrawer', () => {
     const wrapper = ({ children }) => (
       <BrowserRouter>
         <AuthProvider>
-          <SideDrawer open={true} />
+          <SideDrawer open />
           {children}
         </AuthProvider>
       </BrowserRouter>
@@ -51,7 +51,7 @@ describe('Render SideDrawer', () => {
     render(
       <BrowserRouter>
         <AuthProvider>
-          <SideDrawer open={true} />
+          <SideDrawer open />
         </AuthProvider>
       </BrowserRouter>
     );

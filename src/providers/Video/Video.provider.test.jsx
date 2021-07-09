@@ -26,5 +26,4 @@ describe('useVideos provider', () => {
   });
 
   it.skip('load user settings', () => {});
-
 });

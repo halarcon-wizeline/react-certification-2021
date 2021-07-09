@@ -8,7 +8,7 @@ import AuthProvider from '../../../providers/Auth';
 
 describe('Render Toolbar', () => {
   test('it should have an input', () => {
-    let { result } = renderHook(() => useVideos());
+    const { result } = renderHook(() => useVideos());
     const { query } = result.current;
 
     render(

@@ -9,13 +9,13 @@ describe('Render Backdrop', () => {
   });
 
   test('Backdrop to be displayed', () => {
-    render(<Backdrop show={true} />);
+    render(<Backdrop show />);
     expect(screen.getByTestId('backdrop')).not.toBeNull();
   });
 
   test('Backdrop displayed to call click', () => {
     const handleClick = jest.fn();
-    render(<Backdrop show={true} onClick={handleClick} />);
+    render(<Backdrop show onClick={handleClick} />);
     const backdrop = screen.getByTestId('backdrop');
     fireEvent.click(backdrop);
     expect(handleClick).toHaveBeenCalledTimes(1);
