@@ -1,4 +1,5 @@
 import * as actionTypes from '../ActionTypes';
+import * as constants from '../../utils/constants';
 
 function isFavoriteVideo(video, favoriteVideos) {
   // console.log('[actions] isFavoriteVideo');
@@ -37,7 +38,7 @@ function setVideos(state, payload) {
 function loadUserSettings(state) {
   // console.log('[actions] loadUserSettings');
 
-  let savedSettings = localStorage.getItem('REACT-CHALLENGE-USER-PREFERENCES');
+  let savedSettings = localStorage.getItem(constants.REACT_CHALLENGE_USER_PREFERENCES);
   savedSettings = JSON.parse(savedSettings);
 
   if (savedSettings === null) {
@@ -54,7 +55,15 @@ function loadUserSettings(state) {
 
 function writeUserSettings(state) {
   console.log('[actions] writeUserSettings');
-  localStorage.setItem('REACT-CHALLENGE-USER-PREFERENCES', JSON.stringify(state));
+  let settings = { ...state };
+  delete settings.query;
+  delete settings.videos;
+  delete settings.selectedVideo;
+
+  localStorage.setItem(
+    constants.REACT_CHALLENGE_USER_PREFERENCES,
+    JSON.stringify(settings)
+  );
   console.log('Settings saved', state);
 }
 

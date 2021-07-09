@@ -32,14 +32,3 @@ describe('AuthReducer', () => {
     expect(result.current.state.authenticated).toBe(true);
   });
 });
-
-/*
-  const wrapper = ({ children }) => (
-    <AuthProvider>{children}</AuthProvider>
-  )
-  const { result } = renderHook(() => useAuth(), { wrapper });
-  console.log(result.current.state.authenticated);
-
-  expect(result.current.state.authenticated).toBe(false);
-
-*/
