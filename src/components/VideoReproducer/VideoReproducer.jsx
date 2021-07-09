@@ -48,7 +48,6 @@ const VideoReproducer = (props) => {
   const src = `https://www.youtube.com/embed/${props.video.id.videoId}?controls=0&autoplay=0`;
 
   useEffect(() => {
-    initIsFavorite = props.video.isFavorite || false;
     setIsFavorite(props.video.isFavorite);
   }, [props.video.isFavorite]);
 
