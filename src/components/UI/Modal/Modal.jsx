@@ -21,7 +21,7 @@ const ModalStyled = styled.div`
 const modal = (props) => {
   return (
     <>
-      <Backdrop show={props.show} clicked={props.onClose} />
+      <Backdrop show={props.show} onClick={props.onClose} />
       <ModalStyled
         style={{
           transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',

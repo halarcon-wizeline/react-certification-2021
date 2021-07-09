@@ -4,12 +4,14 @@ import InputAuth from './InputAuth';
 
 describe('Render InputAuth', () => {
   test('it should render the label with the value "username"', () => {
-    render(<InputAuth placeholder="username" onChange={() => {}} />);
+    const elementConfig = { placeholder: 'username' };
+    render(<InputAuth onChange={() => {}} elementConfig={elementConfig} />);
     expect(screen.getByText('username')).toBeInTheDocument();
   });
 
   test('it should render the label with the value "password"', () => {
-    render(<InputAuth value="password" onChange={() => {}} />);
+    const elementConfig = { placeholder: 'password' };
+    render(<InputAuth onChange={() => {}} elementConfig={elementConfig} />);
     expect(screen.getByText('password')).toBeInTheDocument();
   });
 });

@@ -94,7 +94,7 @@ const toggleTheme = (state, theme) => {
 };
 
 export default function reducer(state, action) {
-  console.log('[videoReducer] ', action.type, 'state', state);
+  // console.log('[videoReducer] ', action.type, 'state', state);
   switch (action.type) {
     case actionTypes.SET_SELECTED_VIDEO:
       return setSelectedVideo(state, action.payload);

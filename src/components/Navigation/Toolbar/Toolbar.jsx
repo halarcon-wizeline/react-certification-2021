@@ -113,11 +113,11 @@ const Toolbar = (props) => {
   return (
     <ToolbarStyled role="toolbar" theme={themes[currentTheme]}>
       <div className="LeftMenu">
-        <DrawerToggle clicked={props.drawerToggleClicked} />
+        <DrawerToggle onClick={props.drawerToggleClicked} />
         <Input
           value={inputSearch}
           keyDown={inputKeyDownHandler}
-          changed={inputChangeHandler}
+          onChange={inputChangeHandler}
         />
       </div>
       <div className="RightMenu">
@@ -128,7 +128,7 @@ const Toolbar = (props) => {
           />
         </FormGroup>
         {!authState.authenticated ? (
-          <Logo clicked={openLoginModalHandler} />
+          <Logo onClick={openLoginModalHandler} />
         ) : (
           <Logo image={authState.avatarUrl} />
         )}

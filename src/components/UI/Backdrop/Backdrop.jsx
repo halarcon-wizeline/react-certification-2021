@@ -15,14 +15,7 @@ const Backdrop = (props) => {
   return (
     <>
       {props.show ? (
-        <BackdropStyled
-          role="button"
-          tabIndex={0}
-          aria-label="Backdrop"
-          className="Backdrop"
-          onClick={props.clicked}
-          onKeyDown={props.clicked}
-        />
+        <BackdropStyled role="button" data-testid="backdrop" onClick={props.onClick} />
       ) : null}
     </>
   );

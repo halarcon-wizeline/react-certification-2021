@@ -63,7 +63,7 @@ const SideDrawer = (props) => {
 
   return (
     <>
-      <Backdrop show={props.open} clicked={props.onClose} />
+      <Backdrop show={props.open} onClick={props.onClose} />
       <SideDrawerStyled
         onClick={props.onClose}
         onKeyDown={props.onClose}

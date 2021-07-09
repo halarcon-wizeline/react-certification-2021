@@ -4,13 +4,18 @@ import { render, screen } from '@testing-library/react';
 import Toolbar from './Toolbar';
 
 import { useVideos } from '../../../providers/Video';
+import AuthProvider from '../../../providers/Auth';
 
 describe('Render Toolbar', () => {
   test('it should have an input', () => {
-    const { result } = renderHook(() => useVideos());
+    let { result } = renderHook(() => useVideos());
     const { query } = result.current;
 
-    render(<Toolbar query={{ query }} />);
+    render(
+      <AuthProvider>
+        <Toolbar query={{ query }} />
+      </AuthProvider>
+    );
     const items = screen.queryAllByRole('textbox');
     expect(items).toHaveLength(1);
   });
@@ -19,7 +24,11 @@ describe('Render Toolbar', () => {
     const { result } = renderHook(() => useVideos());
     const { query } = result.current;
 
-    render(<Toolbar query={{ query }} />);
+    render(
+      <AuthProvider>
+        <Toolbar query={{ query }} />
+      </AuthProvider>
+    );
     const items = screen.queryAllByRole('img');
     expect(items).toHaveLength(1);
   });

@@ -27,7 +27,7 @@ const Input = (props) => {
       type="text"
       placeholder={props.placeholder}
       value={props.value}
-      onChange={props.changed}
+      onChange={props.onChange}
       onKeyDown={props.keyDown}
     />
   );

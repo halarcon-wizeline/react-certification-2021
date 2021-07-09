@@ -22,14 +22,14 @@ const LabelStyled = styled.div`
 `;
 
 const InputAuth = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <LabelStyled>{props.elementConfig.placeholder}</LabelStyled>
       <InputAuthStyled
         type={props.elementConfig.type}
         value={props.value}
-        onChange={props.changed}
+        onChange={props.onChange}
         onKeyDown={props.keyDown}
       />
     </>

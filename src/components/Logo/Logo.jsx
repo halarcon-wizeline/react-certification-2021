@@ -13,9 +13,8 @@ const Logo = (props) => {
   let image = '/broken-image.jpg';
   if (props.image) image = props.image;
   return (
-    <LogoStyled onClick={props.clicked}>
-      {!props.image}
-      <Avatar src={image} />
+    <LogoStyled onClick={props.onClick}>
+      <Avatar src={image} alt={props.alt} />
     </LogoStyled>
   );
 };

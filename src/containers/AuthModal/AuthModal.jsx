@@ -12,7 +12,6 @@ import * as actionTypes from '../../state/ActionTypes';
 import loginApi from '../../data/login.api';
 
 const AuthModalStyled = styled.div`
-  
   div.header {
     flex: 0 0 auto;
     margin: 0;
@@ -118,7 +117,7 @@ const AuthModal = (props) => {
       elementType={formElement.config.elementType}
       elementConfig={formElement.config.elementConfig}
       value={formElement.config.value}
-      changed={(event) => inputChangedHandler(event, formElement.id)}
+      onChange={(event) => inputChangedHandler(event, formElement.id)}
     />
   ));
 
@@ -127,11 +126,8 @@ const AuthModal = (props) => {
       <form onSubmit={submitHandler}>
         <div className="header">Login</div>
         <div className="form">
-        {errorMessage
-          ? <p className="invalid">{errorMessage}</p>
-          : null
-        }
-        {formElements}
+          {errorMessage ? <p className="invalid">{errorMessage}</p> : null}
+          {formElements}
         </div>
         <div className="footer">
           <Button type="button" onClick={props.onClose}>
@@ -144,6 +140,6 @@ const AuthModal = (props) => {
       </form>
     </AuthModalStyled>
   );
-};;
+};
 
 export default AuthModal;
