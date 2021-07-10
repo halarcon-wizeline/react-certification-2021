@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 import VideoList from '../../components/VideoList';
 import VideoReproducer from '../../components/VideoReproducer';
 import { useVideos } from '../../providers/Video';
-import NotFound from '../NotFound';
 
-const VideoPageStyled = styled.div`
+const SecretVideoPageStyled = styled.div`
   display: flex;
   width: 100%;
 
@@ -17,24 +17,29 @@ const VideoPageStyled = styled.div`
   }
 `;
 
-const VideoPage = () => {
-  console.log('[VideoPage]');
+const SecretVideoPage = () => {
+  console.log('[SecretVideoPage]');
 
+  const history = useHistory();
   const { state } = useVideos();
-  const { selectedVideo } = state;
+  const { selectedVideo, favoriteVideos } = state;
 
   if (!selectedVideo.id) {
-    return <NotFound />;
+    history.push(`/favorites/`);
   }
 
   return (
-    <VideoPageStyled>
+    <SecretVideoPageStyled>
       <VideoReproducer video={selectedVideo} />
       <div className="videoList">
-        <VideoList displayList="vertical" />
+        <VideoList
+          displayList="vertical"
+          linkPrefix="/favorites/"
+          collection={favoriteVideos}
+        />
       </div>
-    </VideoPageStyled>
+    </SecretVideoPageStyled>
   );
 };
 
-export default VideoPage;
+export default SecretVideoPage;

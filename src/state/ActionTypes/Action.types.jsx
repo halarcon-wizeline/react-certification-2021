@@ -1,3 +1,12 @@
+export const AUTH_START = 'AUTH_START';
+export const AUTH_AUTHENTICATE = 'AUTH_AUTHENTICATE';
+export const AUTH_LOAD_SETTINGS = 'AUTH_LOAD_SETTINGS';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const AUTH_SET_USER = 'AUTH_SET_USER';
+
+export const LOAD_USER_SETTINGS = 'LOAD_USER_SETTINGS';
 export const SET_SELECTED_VIDEO = 'SET_SELECTED_VIDEO';
 export const SET_QUERY = 'SET_QUERY';
 export const SET_VIDEOS = 'SET_VIDEOS';
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const TOGGLE_THEME = 'TOGGLE_THEME';

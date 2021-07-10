@@ -8,7 +8,7 @@ describe('Render DrawerToggle', () => {
     expect(screen.getByTestId('drawer-toggle')).toBeTruthy();
   });
 
-  test.skip('calls onClick when clicked', () => {
+  test('calls onClick when clicked', () => {
     const handleClick = jest.fn();
     render(<DrawerToggle onClick={handleClick} />);
     const toggle = screen.getByTestId('drawer-toggle');

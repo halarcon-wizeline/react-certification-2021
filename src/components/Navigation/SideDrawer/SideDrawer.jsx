@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
+import { useAuth } from '../../../providers/Auth';
 import Backdrop from '../../UI/Backdrop';
+
+import * as actionTypes from '../../../state/ActionTypes';
 
 const SideDrawerStyled = styled.div`
   position: fixed;
@@ -43,13 +47,23 @@ const SideDrawerStyled = styled.div`
 `;
 
 const SideDrawer = (props) => {
-  if (props.open) {
-    SideDrawerStyled.backgroundColor = 'cyan';
-  }
+  const { state, dispatch } = useAuth();
+  const { authenticated } = state;
+  const history = useHistory();
+
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: actionTypes.AUTH_LOGOUT,
+    });
+
+    history.push('/');
+    props.onClose();
+  };
 
   return (
     <>
-      <Backdrop show={props.open} clicked={props.onClose} />
+      <Backdrop show={props.open} onClick={props.onClose} />
       <SideDrawerStyled
         onClick={props.onClose}
         onKeyDown={props.onClose}
@@ -62,6 +76,22 @@ const SideDrawer = (props) => {
                 Home
               </NavLink>
             </li>
+            {authenticated ? (
+              <li>
+                <NavLink exact to="/favorites" activeClassName="activeLink">
+                  Favorites
+                </NavLink>
+              </li>
+            ) : (
+              ''
+            )}
+            {authenticated ? (
+              <li>
+                <NavLink to="/" onClick={logoutHandler} onKeyDown={logoutHandler}>
+                  Logout
+                </NavLink>
+              </li>
+            ) : null}
           </ul>
         </nav>
       </SideDrawerStyled>

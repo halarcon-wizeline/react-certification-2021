@@ -27,6 +27,9 @@ const VideoItemVerticalStyled = styled.li`
   height: 98px;
   padding: 6px 10px;
   border: ${({ theme }) => theme.videoItemBorder};
+  &:hover {
+    background-color: ${({ theme }) => theme.videoItemBackgroundHover};
+  }
 `;
 
 const VideoItem = (props) => {

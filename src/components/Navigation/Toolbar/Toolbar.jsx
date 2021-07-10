@@ -7,12 +7,16 @@ import styled from 'styled-components';
 import { useTheme } from '../../../providers/Theme';
 
 import { useVideos } from '../../../providers/Video';
+import { useAuth } from '../../../providers/Auth';
 import * as actionTypes from '../../../state/ActionTypes';
 import { searchYoutubeVideo } from '../../../externalAPI/youtube';
 
 import Input from '../../UI/Input/index';
 import Logo from '../../Logo/Logo';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
+
+import Modal from '../../UI/Modal';
+import FormModal from '../../FormModal';
 
 const ToolbarStyled = styled.div`
   height: 64px;
@@ -56,26 +60,33 @@ const ToolbarStyled = styled.div`
 const Toolbar = (props) => {
   const history = useHistory();
 
-  const { themes, currentTheme, setCurrentTheme } = useTheme();
-  const { state, dispatch } = useVideos();
-  const { query } = props.query || state;
+  const { state: authState } = useAuth();
 
+  const { themes, currentTheme, setCurrentTheme } = useTheme();
+  const { state: videosState, dispatch: videosDispatch } = useVideos();
+  const { query } = props.query || videosState;
+
+  // const isLight = videosState.theme !== 'light' || currentTheme !== 'light';
   const isLight = currentTheme !== 'light';
+  // TODO overwrite theme, setCurrentTheme
+
   const [checked, setChecked] = useState(isLight);
 
   const [inputSearch, setInputSearch] = useState('wizeline');
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const toggleChecked = () => {
     const newTheme = checked ? themes.light.id : themes.dark.id;
     setCurrentTheme(newTheme);
     setChecked(!checked);
+    videosDispatch({ type: actionTypes.TOGGLE_THEME, payload: newTheme });
   };
 
   const getRelatedVideos = () => {
     if (inputSearch !== query) {
-      dispatch({ type: actionTypes.SET_QUERY, payload: inputSearch });
+      videosDispatch({ type: actionTypes.SET_QUERY, payload: inputSearch });
       searchYoutubeVideo(inputSearch).then((response) => {
-        dispatch({ type: actionTypes.SET_VIDEOS, payload: response });
+        videosDispatch({ type: actionTypes.SET_VIDEOS, payload: response });
         history.push('/');
       });
     }
@@ -91,14 +102,23 @@ const Toolbar = (props) => {
     }
   };
 
+  const openLoginModalHandler = () => {
+    setShowLoginModal(!showLoginModal);
+  };
+
+  const closeLoginModalHandler = () => {
+    setShowLoginModal(false);
+  };
+
   return (
     <ToolbarStyled role="toolbar" theme={themes[currentTheme]}>
       <div className="LeftMenu">
-        <DrawerToggle clicked={props.drawerToggleClicked} />
+        <DrawerToggle onClick={props.drawerToggleClicked} />
         <Input
           value={inputSearch}
+          placeholder="Search"
           keyDown={inputKeyDownHandler}
-          changed={inputChangeHandler}
+          onChange={inputChangeHandler}
         />
       </div>
       <div className="RightMenu">
@@ -108,7 +128,15 @@ const Toolbar = (props) => {
             label={themes[currentTheme].label}
           />
         </FormGroup>
-        <Logo />
+        {!authState.authenticated ? (
+          <Logo onClick={openLoginModalHandler} />
+        ) : (
+          <Logo image={authState.avatarUrl} />
+        )}
+
+        <Modal show={showLoginModal} onClose={closeLoginModalHandler}>
+          <FormModal onClose={closeLoginModalHandler} />
+        </Modal>
       </div>
     </ToolbarStyled>
   );
